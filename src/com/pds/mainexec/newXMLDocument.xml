@@ -1,0 +1,93 @@
+<AllClient>
+    <Client>
+        <id_client>1</id_client>
+        <nom>Zouhair</nom>
+        <prenom>HAJJI</prenom>
+        <dateNaissance>1994-10-09 00:00:00.0</dateNaissance>
+        <adresse>Ton Adresse</adresse>
+        <sexe>M</sexe>
+        <codePostale>92100</codePostale>
+        <id_pays>75</id_pays>
+        <id_departement>92</id_departement>
+        <id_pays_Naissance>75</id_pays_Naissance>
+        <id_info_perso>1</id_info_perso>
+        <id_account>1</id_account>
+        <id_conseiller>1</id_conseiller>
+        <id_domiciliation>1</id_domiciliation>
+        <id_info_perso>1</id_info_perso>
+        <profession>Ing Info </profession>
+        <mt_Revenus_mensuels>4000</mt_Revenus_mensuels>
+        <mt_Revenus_conjoint>3200</mt_Revenus_conjoint>
+        <mt_apport_perso>10000</mt_apport_perso>
+        <mt_autre>1000</mt_autre>
+        <situation>Marie</situation>
+        <lastUpdate>2016-05-01 16:51:48.0</lastUpdate>
+        <id_account>1</id_account>
+        <ndc>Zouhair</ndc>
+        <psw>12345</psw>
+        <questionSecrete>je m'appelle comment</questionSecrete>
+        <reponseSecrete>Zouhair</reponseSecrete>
+        <role>User</role>
+        <dateCreation>2016-05-01 16:51:48.0</dateCreation>
+        <id_pays>75</id_pays>
+        <code>250</code>
+        <alpha2>FR</alpha2>
+        <alpha3>FRA</alpha3>
+        <nom_en_gb>France</nom_en_gb>
+        <nom_fr_fr>France</nom_fr_fr>
+        <id_departement>92</id_departement>
+        <departement>Hauts-de-Seine</departement>
+        <id_region>12</id_region>
+        <id_region>12</id_region>
+        <region>Île-de-France</region>
+        <id_agence>1</id_agence>
+        <description>Ag</description>
+        <dateDebutService>2016-05-01 16:51:48.0</dateDebutService>
+        <adresse>Ton Adresse</adresse>
+        <codePostale>92100</codePostale>
+        <id_pays>75</id_pays>
+        <id_departement>92</id_departement>
+        <simulatin>
+            <id_sim_pret>1</id_sim_pret>
+            <dateSimulation>2016-05-01 16:51:48.0</dateSimulation>
+            <duree_pret>12</duree_pret>
+            <mt_pret>10000</mt_pret>
+            <typeTaux>_fixe_</typeTaux>
+            <date_contraction>2017-01-01 00:00:00.0</date_contraction>
+            <locked>1</locked>
+            <id_client>1</id_client>
+            <id_type_pret>1</id_type_pret>
+            <id_calcPret>1</id_calcPret>
+            <id_calcPret>1</id_calcPret>
+            <coef_assurance>0.12</coef_assurance>
+            <t_marge>1.02</t_marge>
+            <f_dossier>0.03</f_dossier>
+            <id_tauxDirecteur>1</id_tauxDirecteur>
+            <dateInserted>2016-05-01 16:51:48.0</dateInserted>
+            <id_tauxDirecteur>1</id_tauxDirecteur>
+            <valeur>2.01</valeur>
+            <dateInserted>2016-05-01 16:51:48.0</dateInserted>
+        </simulatin>
+        <simulatin>
+            <id_sim_pret>2</id_sim_pret>
+            <dateSimulation>2016-05-01 16:51:49.0</dateSimulation>
+            <duree_pret>12</duree_pret>
+            <mt_pret>100000</mt_pret>
+            <typeTaux>_fixe_</typeTaux>
+            <date_contraction>2017-01-01 00:00:00.0</date_contraction>
+            <locked>1</locked>
+            <id_client>1</id_client>
+            <id_type_pret>1</id_type_pret>
+            <id_calcPret>2</id_calcPret>
+            <id_calcPret>2</id_calcPret>
+            <coef_assurance>0.12</coef_assurance>
+            <t_marge>1.92</t_marge>
+            <f_dossier>0.05</f_dossier>
+            <id_tauxDirecteur>1</id_tauxDirecteur>
+            <dateInserted>2016-05-01 16:51:48.0</dateInserted>
+            <id_tauxDirecteur>1</id_tauxDirecteur>
+            <valeur>2.01</valeur>
+            <dateInserted>2016-05-01 16:51:48.0</dateInserted>
+        </simulatin>
+    </Client>
+</AllClient>

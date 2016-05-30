@@ -20,16 +20,26 @@ public class Controller_Indicator implements IObserver{
     
       private ConseillerHandle model;
       private IndicatorHandle Indicator;
+      private int historiquemois = 1;
 
-    public IndicatorHandle getIndicator() {
-        return Indicator;
-    }
+    
 
     public Controller_Indicator(ConseillerHandle model) {
         this.model = model;
         this.Indicator = this.model.getIndicator();
     }
-    
+
+    public int getHistoriquemois() {
+        return historiquemois;
+    }
+
+    public void setHistoriquemois(int historiquemois) {
+        this.historiquemois = historiquemois;
+    }
+  
+    public IndicatorHandle getIndicator() {
+        return Indicator;
+    }
 
     public void sendIndicatorInfo() {
         
@@ -131,7 +141,8 @@ public class Controller_Indicator implements IObserver{
     }
       
      public void sendLoanTime(String checkImmo,String checkConso,int tranche){
-       Element root = new Element("LoanTime"); 
+         System.out.println("passage dans sendloantime");
+         Element root = new Element("LoanTime"); 
        
            
            Element eTypePretImmo = new Element("TypePretImmo");
@@ -144,16 +155,35 @@ public class Controller_Indicator implements IObserver{
            eTranche.setText(String.valueOf(tranche));
            root.addContent(eTranche);
            
-       model.getOut().askAvgAmount(root);
+       model.getOut().askLoanTime(root);
     }  
       
-      
+      public void sendInterestEarned(String checkImmo,String checkConso,int tranche, int mois){
+         System.out.println("passage dans sendloantime");
+         Element root = new Element("LoanTime"); 
+       
+           
+           Element eTypePretImmo = new Element("TypePretImmo");
+           eTypePretImmo.setText(checkImmo);
+           root.addContent(eTypePretImmo);
+           Element eTypePretConso = new Element("TypePretConso");
+           eTypePretConso.setText(checkConso);
+           root.addContent(eTypePretConso);
+           Element eTranche = new Element("Tranche");
+           eTranche.setText(String.valueOf(tranche));
+           root.addContent(eTranche);
+           Element eMois = new Element("Mois");
+           eTranche.setText(String.valueOf(mois+1));
+           root.addContent(eMois);
+           
+       model.getOut().askInterestEarned(root);
+    } 
+     
+     
+     
     @Override
     public boolean update(AbstractObservable sender, String message, Object... data) {
-        System.out.println("mise a jour du controller indicator");
       this.Indicator = this.model.getIndicator();
-        System.out.println(this.model.getIndicator().getResultats().get(0));
-      System.out.println("resultat indicator niveau controller" +Indicator.getResultats().get(0));
           return true;
     }
     

@@ -41,8 +41,8 @@ public class lineChart2 extends ApplicationFrame {
         // creates a line chart object
         // returns the chart panel
         
-        String chartTitle = "Evolution du nombres de simulations / prêt test";
-        String xAxisLabel = "Temps";
+        String chartTitle = "Evolution du nombres de simulations / prêt ";
+        String xAxisLabel = "Mois";
         String yAxisLabel = "Quantité";
         
         XYDataset dataset = createDataset();
@@ -80,7 +80,7 @@ public class lineChart2 extends ApplicationFrame {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(String.format("<html><p style='color:#0000ff;'>Serie: '%s'</p>", dataset.getSeriesKey(i)));
             stringBuilder.append(String.format("Mois:'%d'<br/>", x1.intValue()));
-            stringBuilder.append(String.format("Montant:'%d'", y1.intValue()));
+            stringBuilder.append(String.format("Quantite:'%d'", y1.intValue()));
             stringBuilder.append("</html>");
             return stringBuilder.toString();
         };

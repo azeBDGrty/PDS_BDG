@@ -21,7 +21,7 @@ public class PieChart2 extends ApplicationFrame{
   
     private static List<Integer> resultats;
     PieChart2(List<Integer> resultats) {
-            super("test pie chart");
+            super("Répartition des clients par tranche d'âge pour un type de prêt");
         this.resultats=resultats;
         //setContentPane(createDemoPanel( ));
         //this.setSize( 560 , 367 );    
@@ -47,7 +47,7 @@ public class PieChart2 extends ApplicationFrame{
    private static JFreeChart createChart( PieDataset dataset )
    {
       JFreeChart chart = ChartFactory.createPieChart(      
-         "test pie chart",  // chart title 
+         "Répartition des clients par tranche d'âge pour un type de prêt",  // chart title 
          dataset,        // data    
          true,           // include legend   
          true, 

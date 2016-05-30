@@ -33,8 +33,8 @@ public class Database {
     private static String password = "";
     public static String dbPrefix = "db_";*/
     
-    //private static String nameDB = "pds3";
-    private static String nameDB = "pds_bdg";
+    private static String nameDB = "pds3";
+    //private static String nameDB = "pds_bdg";
     private static String ipDB = "localhost";
     private static String url = "jdbc:mysql://"+ipDB+"/"+nameDB;
     private static String login = "root";

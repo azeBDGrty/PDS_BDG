@@ -33,10 +33,14 @@ public enum Receive {
     sendLoanTime(""),
     sendAvgAmount(""),
     sendAvgAge(""),
+
     sendLoanNumber(""),
     sendSimNumber(""),
-    sendLoanNumbers(""),
     sendTauxInteret(""),
+    sendInterestEarned(""),
+    sendCustomerNumber(""),
+    sendAge(""),
+    sendMoney(""),
     sendSimulationPretsClient ("La liste des simulations de prets.");
     
     private String signification;
@@ -85,6 +89,8 @@ public enum Receive {
             case "sendSimulationPretsClient":
                 return sendSimulationPretsClient;
             
+                case "sendLoanTime":
+                return sendLoanTime;
 
             case "sendLoanNumber":
                 return sendLoanNumber;
@@ -95,15 +101,23 @@ public enum Receive {
             case "sendSimNumber":
                 return sendSimNumber;
 
-            case "sendLoanNumbers":
-                return sendLoanNumbers;
+            case "sendInterestEarned":
+                return sendInterestEarned;
             
             case "sendTauxInteret":
                 return sendTauxInteret;
 
+            case "sendMoney":
+                return sendMoney;
                 
+            case "sendAge":
+                return sendAge;
+            
             case "sendAvgAge":
                 return sendAvgAge;
+            
+            case "sendCustomerNumber":
+                return sendCustomerNumber;    
                 
             default :
                 return none;

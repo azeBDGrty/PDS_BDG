@@ -76,6 +76,7 @@ public class ConseillerHandle extends AbstractHandle{
             in.getCommand();
             buildAllRegion(this.in.getLastDocument());
             
+
             out.askAllDepartement();
             in.getCommand();
             buildAllDepartement(in.getLastDocument());
@@ -107,13 +108,91 @@ public class ConseillerHandle extends AbstractHandle{
             in.getCommand();
             buildOwnInfo(this.in.getLastDocument());
             
-            
-            
             out.askAllSimulationClientPret(root);
             in.getCommand();
             this.buildAllSimulation(this.in.getLastDocument());
+           
             
             
+            //initialize at start
+            Element eAvgAge = new Element("AvgAge"); 
+       Element eTypePretImmo = new Element("TypePretImmo");
+           eTypePretImmo.setText("1");
+           eAvgAge.addContent(eTypePretImmo);
+           Element eTypePretConso = new Element("TypePretConso");
+           eTypePretConso.setText("1");
+           eAvgAge.addContent(eTypePretConso);
+           out.askAvgAge(eAvgAge);
+           in.getCommand();
+           Indicator.setAgebyLoanResult(this.in.getLastDocument());
+       /* 
+             Element root2 = new Element("LoanNumber"); 
+            Element eTypePretImmo2 = new Element("TypePretImmo");
+           eTypePretImmo2.setText("1");
+           root2.addContent(eTypePretImmo2);
+           Element eTypePretConso2 = new Element("TypePretConso");
+           eTypePretConso2.setText("1");
+           root.addContent(eTypePretConso2);
+           Element eTranche = new Element("Tranche");
+           eTranche.setText(String.valueOf(0));
+           root2.addContent(eTranche);
+          out.askLoanNumber(root2);
+          in.getCommand();
+          Indicator.setLoanNumber(this.in.getLastDocument());
+           
+           Element root3 = new Element("SimNumber"); 
+       Element eTypePretImmo3 = new Element("TypePretImmo");
+           eTypePretImmo3.setText("1");
+           root3.addContent(eTypePretImmo3);
+           Element eTypePretConso3 = new Element("TypePretConso");
+           eTypePretConso3.setText("1");
+           root3.addContent(eTypePretConso3);
+           Element eTranche2 = new Element("Tranche");
+           eTranche2.setText(String.valueOf(0));
+           root3.addContent(eTranche2);
+           out.askSimNumber(root3);
+           in.getCommand();
+           Indicator.setSimNumber(this.in.getLastDocument());
+          
+          Element root4 = new Element("AvgAmount"); 
+           Element eTypePretImmo4 = new Element("TypePretImmo");
+           eTypePretImmo4.setText("1");
+           root4.addContent(eTypePretImmo4);
+           Element eTypePretConso4 = new Element("TypePretConso");
+           eTypePretConso4.setText("1");
+           root4.addContent(eTypePretConso4);
+           Element eTranche4 = new Element("Tranche");
+           eTranche.setText(String.valueOf(0));
+           root4.addContent(eTranche4);
+           out.askAvgAmount(root4);
+           in.getCommand();
+           Indicator.setAvgAmount(this.in.getLastDocument());
+           
+           Element root5 = new Element("LoanTime"); 
+        Element eTypePretImmo5 = new Element("TypePretImmo");
+           eTypePretImmo5.setText("1");
+           root5.addContent(eTypePretImmo5);
+           Element eTypePretConso5 = new Element("TypePretConso");
+           eTypePretConso5.setText("1");
+           root5.addContent(eTypePretConso5);
+           Element eTranche5 = new Element("Tranche");
+           eTranche5.setText(String.valueOf(0));
+           root5.addContent(eTranche5);
+           out.askLoanTime(root5);
+           in.getCommand();
+           Indicator.setLoanTime(this.in.getLastDocument());
+           */
+            out.askCustomerNumber(eAvgAge);
+           in.getCommand();
+           Indicator.setCustomerNumber(this.in.getLastDocument());
+           
+         /*   out.askMoney(eAvgAge);
+          in.getCommand();
+           Indicator.setMoney(this.in.getLastDocument());*/
+            
+             out.askAge(eAvgAge);
+           in.getCommand();
+           Indicator.setAge(this.in.getLastDocument());
             
         } catch (IOException | ParseException ex) {
             Logger.getLogger(ConseillerHandle.class.getName()).log(Level.SEVERE, null, ex);
@@ -159,11 +238,11 @@ public class ConseillerHandle extends AbstractHandle{
                    case sendLoanNumber : 
                        Indicator.setLoanNumber(this.in.getLastDocument());
                        setChanged();
-                       //notifyObservers("sendLoanNumber");
-                       //break;
 
-                       notifyObservers("sendLoanNumbers",this.in.getLastDocument().getRootElement().getChildText("loanNumbers"));
-                       break;
+
+                       notifyObservers("sendLoanNumber");
+                        break;
+              
 
                    
                     case sendSimNumber : 
@@ -184,7 +263,14 @@ public class ConseillerHandle extends AbstractHandle{
                        notifyObservers("sendLoanTime");
                         break;    
                     
-                   case sendAvgAge : 
+                    case sendInterestEarned :
+                        Indicator.setInterestEarned(this.in.getLastDocument());
+                        setChanged();
+                        notifyObservers("sendInterestEarned");
+                        break;
+                                
+                        
+                    case sendAvgAge : 
                        System.out.println("test ConseillerHandle " + this.in.getLastDocument().getRootElement().getChildText("resultat"));                       
                        Indicator.setAgebyLoanResult(this.in.getLastDocument());
                        System.out.println("resultat indicator niveau Cobseiller" + Indicator.getResultats().get(0));

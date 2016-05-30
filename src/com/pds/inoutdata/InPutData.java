@@ -110,6 +110,19 @@ public class InPutData {
                 readElement();
                 break ;
             
+            case sendCustomerNumber:
+                readElement();
+                break;
+                
+            case sendMoney:
+                readElement();
+                break;
+                
+            case sendAge:
+                readElement();
+                break;
+                
+                
             case sendLoanTime:
                 readElement();
                 break ;    
@@ -128,8 +141,13 @@ public class InPutData {
                 break ;
                 
             case sendAvgAge:
+                System.out.println("Input coté client pour sendAvgAge");
                 readElement();
                 break ;
+            
+            case sendInterestEarned:
+                readElement();
+                break ;    
                 
             case sendSimulationPretsClient: 
                 System.out.println("Simulation lkfsdmghmfdsjlghvhjmskfldghjkmsdgfhjk");

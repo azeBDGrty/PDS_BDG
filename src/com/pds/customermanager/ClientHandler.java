@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.sql.Connection;
 import java.util.Queue;
-import static  com.pds.networkprotocolServer.Receive.*;
+import static com.pds.networkprotocolServer.Receive.*;
 import com.pds.server.Anonyme;
 import com.pds.usermanager.ManagerDB;
 import com.pds.server.RoleUser;

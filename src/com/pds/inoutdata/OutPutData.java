@@ -110,6 +110,7 @@ public class OutPutData {
     }
     
     public void askLoanTime(Element element) {
+        System.out.println("passage dans askloantime");
         sendMessage(askLoanTime.toString(), element);
     }
     
@@ -117,6 +118,21 @@ public class OutPutData {
         sendMessage(askSimNumber.toString(), element);
     }
     
-    
-    
+     public void askInterestEarned(Element element) {
+        sendMessage(askInterestEarned.toString(), element);
+    }
+
+
+  public void askMoney(Element element) {
+sendMessage(askMoney.toString(),element);
+    }    
+
+   public void askAge(Element element) {
+sendMessage(askAge.toString(),element);
+    }
+    public void askCustomerNumber(Element element) {
+sendMessage(askCustomerNumber.toString(),element);
+    }
+
+  
 }

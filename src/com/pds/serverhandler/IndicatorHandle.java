@@ -22,14 +22,11 @@ public class IndicatorHandle {
     private List<Integer> simNumberResultList;
     private List<Integer> loanTimeResultList;
     private List<Integer> avgAmountResultList;
+    private int customerNumber;
+    private int money;
+    private int age;
 
-    public List<Integer> getLoanTimeResultList() {
-        return loanTimeResultList;
-    }
-
-    public List<Integer> getAvgAmountResultList() {
-        return avgAmountResultList;
-    }
+  
    
    
     public IndicatorHandle(){
@@ -38,35 +35,40 @@ public class IndicatorHandle {
         this.simNumberResultList = new ArrayList<>();
         this.loanTimeResultList = new ArrayList<>();
         this.avgAmountResultList = new ArrayList<>();
-        resultats.add(70);
-        resultats.add(50);
-        resultats.add(60);
-        resultats.add(10);
-        loanNumberResultList.add(1);
-        loanNumberResultList.add(2);
-        loanNumberResultList.add(3);
-        loanNumberResultList.add(4);
-        loanNumberResultList.add(5);
-        loanNumberResultList.add(6);
-        loanNumberResultList.add(7);
-        loanNumberResultList.add(8);
-        loanNumberResultList.add(9);
-        loanNumberResultList.add(10);
-        loanNumberResultList.add(11);      
-       loanNumberResultList.add(12);
-         simNumberResultList.add(1);
-        simNumberResultList.add(2);
-        simNumberResultList.add(3);
-        simNumberResultList.add(4);
-        simNumberResultList.add(5);
-        simNumberResultList.add(6);
-        simNumberResultList.add(7);
-        simNumberResultList.add(8);
-        simNumberResultList.add(9);
-        simNumberResultList.add(10);
-        simNumberResultList.add(11);      
-       simNumberResultList.add(12);
+        
+        for(int i = 0;i<12;i++){
+          //  resultats.add(i);
+            loanNumberResultList.add(i);
+            simNumberResultList.add(i);
+            loanTimeResultList.add(i);
+            avgAmountResultList.add(i);
+        }
+           
                 
+    }
+
+    public int getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public void setCustomerNumber(Document lastDocument) {
+          Element eRoot =lastDocument.getRootElement();
+        Element eResultat = eRoot.getChild("CustomerNumber");
+        System.out.println("resultat nomre client"+eResultat.getText());
+          customerNumber = Integer.parseInt(eResultat.getText());
+        
+        
+        
+    }
+    
+    
+    
+      public List<Integer> getLoanTimeResultList() {
+        return loanTimeResultList;
+    }
+
+    public List<Integer> getAvgAmountResultList() {
+        return avgAmountResultList;
     }
     
        public List<Integer> getResultats() {
@@ -82,7 +84,7 @@ public class IndicatorHandle {
     }
         
     public void setAgebyLoanResult(Document lastDocument) {
-        System.out.println("set indicator");
+       System.out.println("passage dans setagebyLoanResult");
         resultats.clear();
           Element eRoot =lastDocument.getRootElement();
         Element eResultat = eRoot.getChild("resultat");
@@ -94,21 +96,23 @@ public class IndicatorHandle {
     }
     
     public void setLoanNumber(Document lastDocument) {
-        System.out.println("set indicator");
+       System.out.println("passage dans le setter setLoanNumber");
         loanNumberResultList.clear();
           Element eRoot =lastDocument.getRootElement();
-        Element eResultat = eRoot.getChild("eloanNumbers");
-        for(int i=1;i<=12;i++)
+        Element eResultat = eRoot.getChild("loanNumbers");
+        for(int i=1;i<=12;i++){
+            
         loanNumberResultList.add(Integer.parseInt(eResultat.getChildText("month"+i)));
-        
+        System.out.println("loanNumberList["+i+"] = " + loanNumberResultList.get(i-1));
+        }
         
     }
     
     public void setSimNumber(Document lastDocument) {
-        System.out.println("set indicator");
+        
         simNumberResultList.clear();
           Element eRoot =lastDocument.getRootElement();
-        Element eResultat = eRoot.getChild("esimNumbers");
+        Element eResultat = eRoot.getChild("simNumbers");
         for(int i=1;i<=12;i++)
         simNumberResultList.add(Integer.parseInt(eResultat.getChildText("month"+i)));
         
@@ -116,22 +120,53 @@ public class IndicatorHandle {
     }
 
     void setAvgAmount(Document lastDocument) {
-        System.out.println("set indicator");
+        System.out.println("passage dans le setter setavgAmount");
         avgAmountResultList.clear();
           Element eRoot =lastDocument.getRootElement();
-        Element eResultat = eRoot.getChild("eavgAmount");
-        for(int i=1;i<=12;i++)
-        avgAmountResultList.add(Integer.parseInt(eResultat.getChildText("month"+i)));
+        Element eResultat = eRoot.getChild("avgAmount");
+        for(int i=1;i<=12;i++){
+            int value = Math.round(Float.parseFloat(eResultat.getChildText("month"+i)));
+        avgAmountResultList.add(value);
+        }
     }
 
     void setLoanTime(Document lastDocument) {
-        System.out.println("set indicator");
+        System.out.println("passage dans le setter setLoanTime");
         loanTimeResultList.clear();
           Element eRoot =lastDocument.getRootElement();
-        Element eResultat = eRoot.getChild("eloanTime");
-        for(int i=1;i<=12;i++)
-        loanTimeResultList.add(Integer.parseInt(eResultat.getChildText("month"+i)));
+        Element eResultat = eRoot.getChild("loanTime");
+        for(int i=1;i<=12;i++){
+            int value = Math.round(Float.parseFloat(eResultat.getChildText("month"+i)));
+        loanTimeResultList.add(value);
+        }
     }
+
+    void setInterestEarned(Document lastDocument) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setMoney(Document lastDocument) {
+         Element eRoot =lastDocument.getRootElement();
+        Element eResultat = eRoot.getChild("avg_money");
+      System.out.println("resultat set money"+eResultat.getText());
+          money = Integer.parseInt(eResultat.getText()); 
+    }
+
+    void setAge(Document lastDocument) {
+         Element eRoot =lastDocument.getRootElement();
+        Element eResultat = eRoot.getChild("avg_age");
+     
+          age = Math.round(Float.parseFloat(eResultat.getText()));
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getMoney() {
+       return money;
+    }
+    
     
     
 }

@@ -15,7 +15,6 @@ import javax.xml.parsers.*;
 //import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import static com.pds.networkprotocolServer.Receive.*;
-import static com.pds.networkprotocolServer.Send.*;
 import java.io.File;
 import org.jdom2.Document;
 import org.jdom2.input.SAXBuilder;
@@ -25,9 +24,6 @@ import org.jdom2.input.SAXBuilder;
  * @author zouhairhajji
  */
 public class InPutData {
-    
-    
-    
     
     
     private Receive lastCommand;
@@ -97,7 +93,13 @@ public class InPutData {
                 readElement();
                 break;    
             
+            case "askCustomerNumber":
+                this.lastCommand = askCustomerNumber;
+                readElement();
+                break;
+                
                 case "askAvgAge": 
+                System.out.println("passage dans askAvgAge");
                 this.lastCommand = askAvgAge;
                 readElement();
                 break; 
@@ -116,7 +118,11 @@ public class InPutData {
                 this.lastCommand = askAvgAmount;
                 break;        
             
-            case "askLOanTime":
+            case "askInterestEarned":
+                this.lastCommand = askInterestEarned;
+                break;
+                
+            case "askLoanTime":
                 this.lastCommand = askLoanTime;
                 break;
                 
@@ -131,7 +137,14 @@ public class InPutData {
             case "askAllPays":
                 this.lastCommand = askAllPays;
                 break;
+            
+            case "askAge":
+                this.lastCommand = askAge;
+                break;
                 
+            case "askMoney":
+                this.lastCommand = askMoney;
+                break;
                 
             case "askSimulationClient": 
                 this.lastCommand = askSimulationClient;

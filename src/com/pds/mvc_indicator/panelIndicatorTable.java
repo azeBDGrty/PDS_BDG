@@ -8,6 +8,8 @@ package com.pds.mvc_indicator;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import java.text.DateFormatSymbols;
+import java.util.Vector;
 
 /**
  *
@@ -19,28 +21,72 @@ public class panelIndicatorTable extends javax.swing.JPanel {
     private static List<Integer> simNumberList;
     private static List<Integer> loanTimeList;
     private static List<Integer> avgAmountList;
+    int selectedmonth;
+   //Object [] data,data2,data3,data4;
+   
 
+    
+  
     public panelIndicatorTable(Controller_Indicator controller) {
         this.controller= controller;
         initComponents();
-        String col[] = {"Indicateur", "Mois 1", "Mois 2", "Mois 3"};
+        selectedmonth = controller.getHistoriquemois();// mois en cours
+/*String col[];
+        
+        col[] = {"Indicateur",new DateFormatSymbols().getMonths()[selectedmonth], new DateFormatSymbols().getMonths()[selectedmonth+1]};
+        else if(selectedmonth >= 12)
+          String col[] = {"Indicateur", new DateFormatSymbols().getMonths()[selectedmonth-1],new DateFormatSymbols().getMonths()[selectedmonth]};
+        else */String col[] = {"Indicateur", new DateFormatSymbols().getMonths()[selectedmonth-1],new DateFormatSymbols().getMonths()[selectedmonth],new DateFormatSymbols().getMonths()[selectedmonth+1]};
+       
         DefaultTableModel dtm = new DefaultTableModel(col, 0);
         jTable1.setModel(dtm);
-              
-       loanNumberList= controller.getIndicator().getLoanNumberResultList();
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(180);
+        
+       
+        loanNumberList= controller.getIndicator().getLoanNumberResultList();
        simNumberList= controller.getIndicator().getSimNumberResultList();
        loanTimeList= controller.getIndicator().getLoanTimeResultList();
        avgAmountList= controller.getIndicator().getAvgAmountResultList();
     
-       
-            Object[] data = {"Nombre de prêt", loanNumberList.get(0), loanNumberList.get(1),loanNumberList.get(2)};
-            Object[] data2 = {"Nombre de simulation", simNumberList.get(0), simNumberList.get(1),simNumberList.get(2)};
-            Object[] data3 = {"Durée moyenne des prêts", loanTimeList.get(0), loanTimeList.get(1),loanTimeList.get(2)};
-            Object[] data4 = {"Montant moyen des prêts", avgAmountList.get(0), avgAmountList.get(1),avgAmountList.get(2)};
-            dtm.addRow(data);
+        System.out.println("mois selectionné " + selectedmonth);
+        System.out.println("mois selectionné " + jComboBox1.getSelectedIndex());
+        System.out.println("resultat liste = " + loanTimeList.get(3));
+        System.out.println("resultat liste[selectedmonth] = " + loanTimeList.get(selectedmonth));
+        
+        if((selectedmonth -1) <= 0) {
+            System.out.println("passage dans cas erreur mois janvier");
+        Object[] data = {"Nombre de prêt",  loanNumberList.get(selectedmonth),loanNumberList.get(selectedmonth+1)};
+       Object[] data2 = {"Nombre de simulation", simNumberList.get(selectedmonth),simNumberList.get(selectedmonth+1)};
+       Object[]     data3 = {"Durée moyenne des prêts", loanTimeList.get(selectedmonth),loanTimeList.get(selectedmonth+1)};
+        Object[]     data4 = {"Montant moyen des prêts",avgAmountList.get(selectedmonth),avgAmountList.get(selectedmonth+1)};
+       dtm.addRow(data);
             dtm.addRow(data2);
             dtm.addRow(data3);
             dtm.addRow(data4);
+        }
+        else if ((selectedmonth +1) >= 12) {
+       Object[]       data = {"Nombre de prêt",  loanNumberList.get(selectedmonth-1),loanNumberList.get(selectedmonth)};
+      Object[]      data2 = {"Nombre de simulation", simNumberList.get(selectedmonth-1),simNumberList.get(selectedmonth)};
+      Object[]      data3 = {"Durée moyenne des prêts", loanTimeList.get(selectedmonth-1),loanTimeList.get(selectedmonth)};
+      Object[]       data4 = {"Montant moyen des prêts",avgAmountList.get(selectedmonth-1),avgAmountList.get(selectedmonth)};
+       dtm.addRow(data);
+            dtm.addRow(data2);
+            dtm.addRow(data3);
+            dtm.addRow(data4);
+        }
+         else {
+      Object[]       data = {"Nombre de prêt",  loanNumberList.get(selectedmonth-1),loanNumberList.get(selectedmonth),loanNumberList.get(selectedmonth+1)};
+      Object[]       data2 = {"Nombre de simulation", simNumberList.get(selectedmonth-1),simNumberList.get(selectedmonth),simNumberList.get(selectedmonth+1)};
+      Object[]      data3 = {"Durée moyenne des prêts", loanTimeList.get(selectedmonth-1),loanTimeList.get(selectedmonth),loanTimeList.get(selectedmonth +1)} ;
+     Object[]        data4 = {"Montant moyen des prêts",avgAmountList.get(selectedmonth-1),avgAmountList.get(selectedmonth),avgAmountList.get(selectedmonth+1)};
+       dtm.addRow(data);
+            dtm.addRow(data2);
+            dtm.addRow(data3);
+            dtm.addRow(data4);
+        } 
+     
+        
+            
          
     }
 
@@ -94,11 +140,10 @@ public class panelIndicatorTable extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckBox1)
                             .addComponent(jCheckBox2))
@@ -113,16 +158,16 @@ public class panelIndicatorTable extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jCheckBox1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jCheckBox2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,25 +178,29 @@ public class panelIndicatorTable extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
   
+        controller.setHistoriquemois(jComboBox1.getSelectedIndex());
+        System.out.println("mois selection = " + selectedmonth);
             if(jCheckBox1.isSelected() && jCheckBox2.isSelected() ) {              
-            controller.sendLoanNumberRequest("1","1",jComboBox1.getSelectedIndex());
-            controller.sendSimNumberRequest("1","1",jComboBox1.getSelectedIndex()); 
-            controller.sendAvgAmount("1","1",jComboBox1.getSelectedIndex());
-            controller.sendLoanTime("1","1",jComboBox1.getSelectedIndex());
+           controller.sendLoanNumberRequest("1","1",jComboBox2.getSelectedIndex());
+        controller.sendSimNumberRequest("1","1",jComboBox2.getSelectedIndex()); 
+            controller.sendAvgAmount("1","1",jComboBox2.getSelectedIndex());
+            controller.sendLoanTime("1","1",jComboBox2.getSelectedIndex());
+         //   controller.sendInterestEarned("1","1",jComboBox2.getSelectedIndex(),jComboBox1.getSelectedIndex());
             }
             
             else if (jCheckBox1.isSelected()) {
-                controller.sendLoanNumberRequest("0","1",jComboBox1.getSelectedIndex());
-                controller.sendSimNumberRequest("0","1",jComboBox1.getSelectedIndex());
-                controller.sendAvgAmount("0","1",jComboBox1.getSelectedIndex());
-            controller.sendLoanTime("0","1",jComboBox1.getSelectedIndex());
+              controller.sendLoanNumberRequest("0","1",jComboBox2.getSelectedIndex());
+            controller.sendSimNumberRequest("0","1",jComboBox2.getSelectedIndex());
+              controller.sendAvgAmount("0","1",jComboBox2.getSelectedIndex());
+            controller.sendLoanTime("0","1",jComboBox2.getSelectedIndex());
+          //  controller.sendInterestEarned("0","1",jComboBox2.getSelectedIndex(),jComboBox1.getSelectedIndex());
             }
             else if (jCheckBox2.isSelected()) {
-                controller.sendLoanNumberRequest("1","0",jComboBox1.getSelectedIndex());
-            controller.sendSimNumberRequest("1","0",jComboBox1.getSelectedIndex());
-            controller.sendAvgAmount("1","0",jComboBox1.getSelectedIndex());
-            controller.sendLoanTime("1","0",jComboBox1.getSelectedIndex());
-            
+              controller.sendLoanNumberRequest("1","0",jComboBox2.getSelectedIndex());
+           controller.sendSimNumberRequest("1","0",jComboBox2.getSelectedIndex());
+           controller.sendAvgAmount("1","0",jComboBox2.getSelectedIndex());
+            controller.sendLoanTime("1","0",jComboBox2.getSelectedIndex());
+          //  controller.sendInterestEarned("1","0",jComboBox2.getSelectedIndex(),jComboBox1.getSelectedIndex());
         }
     
     }//GEN-LAST:event_jButton1ActionPerformed

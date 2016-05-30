@@ -35,6 +35,10 @@ public enum Send {
     askLoanTime(""),
     askAvgAmount(""),
     askSimNumber(""),
+    askInterestEarned(""),
+    askCustomerNumber(""),
+    askMoney(""),
+    askAge(""),
     askTauxInteret ("");
     
     private String signification;

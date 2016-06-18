@@ -71,12 +71,6 @@ public class Controller_MDIForm {
         return viewGestProspect;
     }
 
-    public View_SimTauxVari ouvrirListProspectEmpVar() {
-        Controller_gestProspect controllerGestprospect = new Controller_gestProspect((ConseillerHandle)model);
-        View_SimTauxVari view = new View_SimTauxVari(controllerGestprospect);
-        model.addObserver(view);
-        return view;
-        
-    }
+    
     
 }

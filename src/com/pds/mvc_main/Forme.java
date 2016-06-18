@@ -127,7 +127,7 @@ public class Forme extends JFrame implements IObserver {
         this.listerComptes.addActionListener(new GestionClientListener());
         this.listerClients.addActionListener(new ListerClientListener());
         this.simProspect.addActionListener(new simProspectListener());
-        this.simPretVar.addActionListener(new simProspectEmpVarListener());
+       
         this.showIndicators.addActionListener(new InfoIndicatorListener());
         
         
@@ -229,8 +229,7 @@ public class Forme extends JFrame implements IObserver {
     public class simProspectEmpVarListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            View_SimTauxVari view = controller.ouvrirListProspectEmpVar();
-            addWindow(view, true);
+           
         }
     }
 

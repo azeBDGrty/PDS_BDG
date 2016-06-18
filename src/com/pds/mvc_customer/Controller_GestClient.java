@@ -7,6 +7,8 @@ package com.pds.mvc_customer;
 
 import com.pds.entities.Client;
 import com.pds.entities.SimulationPret;
+import com.pds.mvc_gestProspect.Controller_gestProspect;
+import com.pds.mvc_gestProspect.View_SimTauxVari;
 import com.pds.serverhandler.AbstractHandle;
 import com.pds.serverhandler.ConseillerHandle;
 import java.sql.SQLException;
@@ -65,4 +67,14 @@ public class Controller_GestClient {
     }
     
     
+
+public View_SimTauxVari ouvrirListProspectEmpVar() {
+        Controller_gestProspect controllerGestprospect = new Controller_gestProspect((ConseillerHandle)model);
+        View_SimTauxVari view = new View_SimTauxVari(controllerGestprospect);
+        model.addObserver(view);
+        model.getDeskTopPane().add(view);
+        view.setVisible(true);
+        return view;
+    }
 }
+

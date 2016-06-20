@@ -5,6 +5,13 @@
  */
 package com.pds.mvc_gestProspect;
 
+import com.pds.entities.CalculPret;
+import com.pds.entities.SimulationPret;
+import com.pds.entities.Taux_directeur;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import com.pds.entities.MathHepler;
 import com.pds.implobs.AbstractObservable;
 import java.util.Random;
@@ -17,13 +24,22 @@ import javax.swing.JOptionPane;
 public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.pds.implobs.IObserver {
 
     private Controller_gestProspect controller;
+    
+    private List<infoMensualite> augmentationTaux, baisseTaux, stabiliteTaux;
 
     public View_SimTauxVari(Controller_gestProspect controller) {
         this.controller = controller;
         initComponents();
-        float variableAlea = 4+(new Random().nextFloat() * (100 - 1) + 1)/100;
-        this.jTextField4.setText(MathHepler.ajustVirgule(variableAlea, 2));
-        this.jLabel6.setText(this.jLabel6.getText()+ MathHepler.ajustVirgule(variableAlea, 2));
+        float variableAlea = 4 + (new Random().nextFloat() * (100 - 1) + 1) / 100;
+        //this.jTextField4.setText(MathHepler.ajustVirgule(variableAlea, 2));
+        //this.jLabel6.setText(this.jLabel6.getText() + MathHepler.ajustVirgule(variableAlea, 2));
+        this.jLabel6.setText(this.jLabel6.getText()+ MathHepler.ajustVirgule(variableAlea, 2).replace(",", "."));
+        jComboBox2.setSelectedIndex(4);
+        jComboBox1.setSelectedIndex(4);
+        this.augmentationTaux = new ArrayList<>();
+        this.baisseTaux = new ArrayList<>();
+        this.stabiliteTaux = new ArrayList<>();
+        
     }
 
     /**
@@ -48,12 +64,37 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
         jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        iBaisseCoutPret = new javax.swing.JTextField();
+        iBaisseInteret = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        iStabCoutPret = new javax.swing.JTextField();
+        iStabInteret = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        iAugCoutPret = new javax.swing.JTextField();
+        iAugInteret = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        iSMtTotal = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        iSIndiceRef = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        iSDuree = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        iSTauxCape = new javax.swing.JTextField();
+        showAmmort = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 255, 255));
         setClosable(true);
         setIconifiable(true);
 
-        jLabel2.setText("Montant emprunté :");
+        jLabel2.setText("Montant emprunté  :");
 
         jLabel3.setText("Durée de l'emprunt (année):");
 
@@ -74,7 +115,7 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
             }
         });
 
-        jLabel4.setText("Taux capé: ");
+        jLabel4.setText("Taux capé (en %) : ");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
 
@@ -91,43 +132,229 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
         jLabel6.setText("Le taux aujourd'hui est de :");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("Synthèse :");
+
+        jPanel1.setBackground(new java.awt.Color(226, 253, 226));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Baisse du taux", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 13))); // NOI18N
+
+        jLabel11.setText("Coût prêt :");
+
+        jLabel12.setText("Intérêt : ");
+
+        iBaisseCoutPret.setText("jTextField3");
+
+        iBaisseInteret.setText("jTextField3");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(iBaisseCoutPret, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(iBaisseInteret)))
+                .addGap(12, 12, 12))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(iBaisseCoutPret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(iBaisseInteret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel5.setBackground(new java.awt.Color(216, 216, 216));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stabilité du taux ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 13))); // NOI18N
+
+        jLabel24.setText("Coût prêt :");
+
+        jLabel25.setText("Intérêt : ");
+
+        iStabCoutPret.setText("jTextField3");
+
+        iStabInteret.setText("jTextField3");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(iStabInteret))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(iStabCoutPret, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(iStabCoutPret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(iStabInteret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26))
+        );
+
+        jPanel4.setBackground(new java.awt.Color(250, 114, 114));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Augmentation du taux", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 13))); // NOI18N
+
+        jLabel22.setText("Coût prêt :");
+
+        jLabel23.setText("Intérêt : ");
+
+        iAugCoutPret.setText("jTextField3");
+
+        iAugInteret.setText("jTextField3");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(iAugCoutPret, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                    .addComponent(iAugInteret))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(iAugCoutPret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(iAugInteret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel14.setText("Montant emprunté : ");
+
+        iSMtTotal.setText("jTextField10");
+        iSMtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iSMtTotalActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("L'indice de référence :");
+
+        iSIndiceRef.setText("jTextField10");
+
+        jLabel16.setText("Durée :");
+
+        iSDuree.setText("jTextField12");
+
+        jLabel17.setText("Taux capé : ");
+
+        iSTauxCape.setText("jTextField13");
+
+        showAmmort.setText("jButton2");
+        showAmmort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAmmortActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addGap(94, 94, 94))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(95, 95, 95)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextField1)
+                                    .addComponent(jTextField4)
+                                    .addComponent(jTextField2)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(iSMtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(65, 65, 65)
+                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(iSIndiceRef, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(56, 56, 56)
+                                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(iSTauxCape, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(iSDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(256, 256, 256)
+                        .addComponent(showAmmort)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
@@ -151,20 +378,37 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(iSMtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel16)
+                        .addComponent(iSDuree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(iSIndiceRef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17)
+                    .addComponent(iSTauxCape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(showAmmort)
+                .addGap(50, 50, 50))
         );
+
+        jPanel5.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4KeyPressed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
@@ -188,35 +432,191 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
                 JOptionPane.showMessageDialog(this, "La durée ne doit pas inférieure à 0");
                 return;
             }
-            JTablesFrame jt = new JTablesFrame(indice, duree, tauxInit, montantPret, Double.parseDouble(jComboBox1.getSelectedItem().toString()));
+            chargerSimulation(indice, duree, tauxInit, montantPret, Double.parseDouble(jComboBox1.getSelectedItem().toString()));
+        
+            //JTablesFrame jt = new JTablesFrame(indice, duree, tauxInit, montantPret, Double.parseDouble(jComboBox1.getSelectedItem().toString()));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Le formulaire est mal rempli");
         }
 
-        
         //System.out.println(indice);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4KeyPressed
+
+    private void iSMtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iSMtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iSMtTotalActionPerformed
+
+    private void showAmmortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAmmortActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showAmmortActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField iAugCoutPret;
+    private javax.swing.JTextField iAugInteret;
+    private javax.swing.JTextField iBaisseCoutPret;
+    private javax.swing.JTextField iBaisseInteret;
+    private javax.swing.JTextField iSDuree;
+    private javax.swing.JTextField iSIndiceRef;
+    private javax.swing.JTextField iSMtTotal;
+    private javax.swing.JTextField iSTauxCape;
+    private javax.swing.JTextField iStabCoutPret;
+    private javax.swing.JTextField iStabInteret;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JButton showAmmort;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public boolean update(AbstractObservable sender, String message, Object... data) {
         return true;
     }
+
+    private void chargerSimulation(double indice, int duree, double tauxInit, double montant, double capet) {
+
+        SimulationPret sp = new SimulationPret();
+        sp.setMtPret(montant);
+        Taux_directeur td = new Taux_directeur();
+        td.setValue(tauxInit);
+        CalculPret cp = new CalculPret();
+        cp.setT_marge(0d);
+        sp.setCalcPret(cp);
+        sp.setDureePret(duree);
+        cp.setTauxDirecteur(td);
+
+        this.iSDuree.setText(duree + "");
+        this.iSMtTotal.setText(montant + "");
+        this.iSIndiceRef.setText(indice + "");
+        this.iSTauxCape.setText(capet + "");
+
+        /**
+         *
+         * Augmentation du taux
+         */
+        double tauxTmp = tauxInit;
+        double remaining = montant;
+
+        double paymentMois = 0;
+        double montantTotal = 0;
+        this.augmentationTaux.clear();
+
+        for (int j = 0; j < duree; j++) {      //Display values in cells 
+
+            montantTotal += (montant / duree) + (montant / duree) * tauxTmp / 100;
+            paymentMois = (montant / duree) + (montant / duree) * tauxTmp / 100;
+            infoMensualite mensualite = new infoMensualite(j + 1, indice, tauxTmp, paymentMois, montantTotal, (montant / duree) * tauxTmp / 100);
+            this.augmentationTaux.add(mensualite);
+
+            if ((tauxTmp + indice) < tauxInit + capet) {
+                tauxTmp += indice;
+            } else {
+                tauxTmp = (tauxInit + capet);
+            }
+
+            System.out.println(mensualite);
+        }
+        iAugCoutPret.setText(MathHepler.ajustVirgule(montantTotal, 2) + " €");
+        this.iAugInteret.setText(MathHepler.ajustVirgule(montantTotal - montant, 2) + " €");
+
+        /**
+         *
+         * Baisse du taux
+         */
+        tauxTmp = tauxInit;
+        remaining = montant;
+
+        montantTotal = 0;
+        this.baisseTaux.clear();
+
+        for (int j = 0; j < duree; j++) {      //Display values in cells 
+
+            montantTotal += (montant / duree) + (montant / duree) * tauxTmp / 100;
+            paymentMois = (montant / duree) + (montant / duree) * tauxTmp / 100;
+            infoMensualite mensualite = new infoMensualite(j + 1, indice, tauxTmp, paymentMois, montantTotal, (montant / duree) * tauxTmp / 100);
+            this.baisseTaux.add(mensualite);
+
+            if ((tauxTmp - indice) > 2) {
+                tauxTmp -= indice;
+            } else {
+                tauxTmp = 2;
+            }
+
+        }
+        iBaisseCoutPret.setText(MathHepler.ajustVirgule(montantTotal, 2) + " €");
+        this.iBaisseInteret.setText(MathHepler.ajustVirgule(montantTotal - montant, 2) + " €");
+
+        /**
+         *
+         * stabilite du taux
+         */
+        tauxTmp = tauxInit;
+        remaining = montant;
+
+        montantTotal = 0;
+        paymentMois = 0;
+        this.stabiliteTaux.clear();
+
+        for (int j = 0; j < duree; j++) {      //Display values in cells 
+            montantTotal += (montant / duree) + (montant / duree) * tauxTmp / 100;
+            paymentMois = (montant / duree) + (montant / duree) * tauxTmp / 100;
+            infoMensualite mensualite = new infoMensualite(j + 1, indice, tauxTmp, paymentMois, montantTotal, (montant / duree) * tauxTmp / 100);
+            stabiliteTaux.add(mensualite);
+        }
+        iStabCoutPret.setText(MathHepler.ajustVirgule(montantTotal, 2) + " €");
+        this.iStabInteret.setText(MathHepler.ajustVirgule(montantTotal - montant, 2) + " €");
+    }
+
+    public class infoMensualite {
+
+        int annee;
+        double indice, taux, mensualite, montantRestant, interet;
+
+        public infoMensualite(int annee, double indice, double taux, double mensualite, double montantRestant, double interet) {
+            this.annee = annee;
+            this.indice = indice;
+            this.taux = taux;
+            this.mensualite = mensualite;
+            this.montantRestant = montantRestant;
+            this.interet = interet;
+        }
+        @Override
+        public String toString() {
+            return "infoMensualite{" + "annee=" + annee + ", indice=" + indice + ", taux=" + taux + ", mensualite=" + mensualite + ", montantRestant=" + montantRestant + ", interet=" + interet + '}';
+        }
+    }
+
 }

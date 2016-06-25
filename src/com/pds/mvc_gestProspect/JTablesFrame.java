@@ -10,6 +10,7 @@ import com.pds.entities.MathHepler;
 import com.pds.entities.SimulationPret;
 import com.pds.entities.Taux_directeur;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -20,10 +21,55 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JTablesFrame extends javax.swing.JFrame {
     
-    /**
-     * Creates new form JTablesFrame
-     */
-    public JTablesFrame(double indice, int duree, double tauxInit, double montant, double capet) {
+   private List<View_SimTauxVari.infoMensualite> bestRate;
+    
+    public JTablesFrame(List<View_SimTauxVari.infoMensualite> bestRate, List<View_SimTauxVari.infoMensualite> badRate, List<View_SimTauxVari.infoMensualite> stabRate, double indice, int duree, double tauxInit, double montant, double capet){
+        initComponents();
+        this.bestRate = new ArrayList<>();
+        
+        afficherInformation(bestRate, badRate, stabRate, indice, duree, tauxInit, montant, capet);
+    }
+    
+    
+    public void afficherInformation(List<View_SimTauxVari.infoMensualite> bestRate, List<View_SimTauxVari.infoMensualite> badRate, List<View_SimTauxVari.infoMensualite> stabRate, double indice, int duree, double tauxInit, double montant, double capet){
+        
+        double montantTotal = -1;
+        String recap = "";
+        
+        //Best Rate 
+         montantTotal = bestRate.get(bestRate.size()-1).montantRestant;
+        
+        
+        String col[] = {"Année", "Taux capé", "Indice", "Taux (%)", "Mensualité", "Montant restant", "Interet"};
+        DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+        dtm.setRowCount(0);
+        dtm.setColumnIdentifiers(col);
+        
+        for(View_SimTauxVari.infoMensualite info : bestRate){
+            montantTotal -= info.mensualite;
+            info.montantRestant = montantTotal;
+            dtm.addRow(new Object[]{info.annee, MathHepler.ajustVirgule(capet, 2)+" %", info.indice, MathHepler.ajustVirgule(info.taux, 2)+" %", MathHepler.ajustVirgule(info.mensualite/12, 2)+" €", MathHepler.ajustVirgule(info.montantRestant, 2)+" €", MathHepler.ajustVirgule(info.interet, 2)+" €"});
+        }
+        
+        
+        
+        // Bad Rate
+        montantTotal = badRate.get(badRate.size()-1).montantRestant;
+        
+        
+        String colBadRate[] = {"Année", "Taux capé", "Indice", "Taux (%)", "Mensualité", "Montant restant", "Interet"};
+        DefaultTableModel dtmBadRate = (DefaultTableModel) jTable1.getModel();
+        dtmBadRate.setRowCount(0);
+        dtmBadRate.setColumnIdentifiers(colBadRate);
+        
+        for(View_SimTauxVari.infoMensualite info : badRate){
+            montantTotal -= info.mensualite;
+            info.montantRestant = montantTotal;
+            dtmBadRate.addRow(new Object[]{info.annee, MathHepler.ajustVirgule(capet, 2)+" %", info.indice, MathHepler.ajustVirgule(info.taux, 2)+" %", MathHepler.ajustVirgule(info.mensualite/12, 2)+" €", MathHepler.ajustVirgule(info.montantRestant, 2)+" €", MathHepler.ajustVirgule(info.interet, 2)+" €"});
+        }
+    }
+
+   public JTablesFrame(double indice, int duree, double tauxInit, double montant, double capet) {
         SimulationPret sp=new SimulationPret();
         sp.setMtPret(montant);
         Taux_directeur td=new Taux_directeur();

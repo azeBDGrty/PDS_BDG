@@ -34,6 +34,11 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+          </Group>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -42,22 +47,27 @@
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
                   <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jlRecapBaisse" alignment="0" min="-2" pref="920" max="-2" attributes="0"/>
+                                  <Component id="jlRecapHausse" alignment="0" min="-2" pref="827" max="-2" attributes="0"/>
+                                  <Component id="jlRecapStab" alignment="0" min="-2" pref="788" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="164" max="32767" attributes="0"/>
-              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,15 +76,21 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="jlRecapBaisse" pref="22" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="138" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jlRecapHausse" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="117" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jlRecapStab" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane3" min="-2" pref="121" max="-2" attributes="0"/>
@@ -279,6 +295,21 @@
           <Color blue="66" green="33" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Le tableau d&apos;amortissement"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlRecapBaisse">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pour un montant de V , avec un taux initial de W , un indice de X , et un taux cap&#xe9; de Y , ce cr&#xe9;dit vous co&#xfb;tera Z ."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlRecapHausse">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pour un montant de V , avec un taux initial de W , un indice de X , et un taux cap&#xe9; de Y , ce cr&#xe9;dit vous co&#xfb;tera Z ."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlRecapStab">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pour un montant de V , avec un taux initial de W , un indice de X , et un taux cap&#xe9; de Y , ce cr&#xe9;dit vous co&#xfb;tera Z ."/>
       </Properties>
     </Component>
   </SubComponents>

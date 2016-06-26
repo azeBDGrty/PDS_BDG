@@ -38,6 +38,13 @@ public class JTablesFrame extends javax.swing.JFrame {
         
         //Best Rate 
          montantTotal = bestRate.get(bestRate.size()-1).montantRestant;
+         recap = jlRecapBaisse.getText();
+        recap = recap.replace("V", MathHepler.ajustVirgule(montant, 2)+"€");
+        recap = recap.replace("W", MathHepler.ajustVirgule(tauxInit, 2)+" %");
+        recap = recap.replace("X", MathHepler.ajustVirgule(indice, 2)+" %");
+        recap = recap.replace("Y", MathHepler.ajustVirgule(capet, 2)+" %");
+        recap = recap.replace("Z", MathHepler.ajustVirgule(bestRate.get(bestRate.size()-1).montantRestant, 2)+" €");
+        jlRecapBaisse.setText(recap);
         
         
         String col[] = {"Année", "Taux capé", "Indice", "Taux (%)", "Mensualité", "Montant restant", "Interet"};
@@ -198,6 +205,9 @@ public class JTablesFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jlRecapBaisse = new javax.swing.JLabel();
+        jlRecapHausse = new javax.swing.JLabel();
+        jlRecapStab = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -253,6 +263,12 @@ public class JTablesFrame extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 51, 102));
         jLabel4.setText("Le tableau d'amortissement");
 
+        jlRecapBaisse.setText("Pour un montant de V , avec un taux initial de W , un indice de X , et un taux capé de Y , ce crédit vous coûtera Z .");
+
+        jlRecapHausse.setText("Pour un montant de V , avec un taux initial de W , un indice de X , et un taux capé de Y , ce crédit vous coûtera Z .");
+
+        jlRecapStab.setText("Pour un montant de V , avec un taux initial de W , un indice de X , et un taux capé de Y , ce crédit vous coûtera Z .");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -265,6 +281,10 @@ public class JTablesFrame extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(154, 154, 154))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,33 +292,42 @@ public class JTablesFrame extends javax.swing.JFrame {
                         .addGap(303, 303, 303)
                         .addComponent(jLabel2)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
                     .addComponent(jScrollPane3)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(330, 330, 330)
                         .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 164, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(154, 154, 154))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlRecapBaisse, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jlRecapHausse, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jlRecapStab, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jlRecapBaisse, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlRecapHausse)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlRecapStab)
+                .addGap(5, 5, 5)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,5 +398,8 @@ public class JTablesFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JLabel jlRecapBaisse;
+    private javax.swing.JLabel jlRecapHausse;
+    private javax.swing.JLabel jlRecapStab;
     // End of variables declaration//GEN-END:variables
 }

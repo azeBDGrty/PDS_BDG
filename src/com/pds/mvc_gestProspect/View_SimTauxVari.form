@@ -98,8 +98,8 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
-                      <Component id="showAmmort" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                      <Component id="showAmmort" min="-2" pref="379" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -339,14 +339,8 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="iBaisseCoutPret">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField3"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="iBaisseInteret">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField3"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -418,14 +412,8 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="iStabCoutPret">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField3"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="iStabInteret">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField3"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -491,14 +479,8 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="iAugCoutPret">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField3"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="iAugInteret">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField3"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -508,9 +490,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="iSMtTotal">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField10"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="iSMtTotalActionPerformed"/>
       </Events>
@@ -521,9 +500,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="iSIndiceRef">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField10"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel16">
       <Properties>
@@ -531,9 +507,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="iSDuree">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField12"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel17">
       <Properties>
@@ -541,13 +514,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="iSTauxCape">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField13"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="showAmmort">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton2"/>
+        <Property name="text" type="java.lang.String" value="Tableau D&apos;amortissement"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showAmmortActionPerformed"/>

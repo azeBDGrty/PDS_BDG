@@ -39,6 +39,7 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
         this.augmentationTaux = new ArrayList<>();
         this.baisseTaux = new ArrayList<>();
         this.stabiliteTaux = new ArrayList<>();
+        this.showAmmort.setEnabled(false);
         
     }
 
@@ -142,10 +143,6 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
 
         jLabel12.setText("Intérêt : ");
 
-        iBaisseCoutPret.setText("jTextField3");
-
-        iBaisseInteret.setText("jTextField3");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -182,10 +179,6 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
         jLabel24.setText("Coût prêt :");
 
         jLabel25.setText("Intérêt : ");
-
-        iStabCoutPret.setText("jTextField3");
-
-        iStabInteret.setText("jTextField3");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -225,10 +218,6 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
 
         jLabel23.setText("Intérêt : ");
 
-        iAugCoutPret.setText("jTextField3");
-
-        iAugInteret.setText("jTextField3");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -260,7 +249,6 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
 
         jLabel14.setText("Montant emprunté : ");
 
-        iSMtTotal.setText("jTextField10");
         iSMtTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iSMtTotalActionPerformed(evt);
@@ -269,17 +257,11 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
 
         jLabel15.setText("L'indice de référence :");
 
-        iSIndiceRef.setText("jTextField10");
-
         jLabel16.setText("Durée :");
-
-        iSDuree.setText("jTextField12");
 
         jLabel17.setText("Taux capé : ");
 
-        iSTauxCape.setText("jTextField13");
-
-        showAmmort.setText("jButton2");
+        showAmmort.setText("Tableau D'amortissement");
         showAmmort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showAmmortActionPerformed(evt);
@@ -347,8 +329,8 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
                                     .addComponent(iSTauxCape, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(iSDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(256, 256, 256)
-                        .addComponent(showAmmort)))
+                        .addGap(122, 122, 122)
+                        .addComponent(showAmmort, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -433,7 +415,7 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
                 return;
             }
             chargerSimulation(indice, duree, tauxInit, montantPret, Double.parseDouble(jComboBox1.getSelectedItem().toString()));
-        
+            this.showAmmort.setEnabled(true);
             //JTablesFrame jt = new JTablesFrame(indice, duree, tauxInit, montantPret, Double.parseDouble(jComboBox1.getSelectedItem().toString()));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Le formulaire est mal rempli");

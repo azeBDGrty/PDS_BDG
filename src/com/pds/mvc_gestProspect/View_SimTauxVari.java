@@ -420,6 +420,7 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Le formulaire est mal rempli");
         }
+        
 
         //System.out.println(indice);
         // TODO add your handling code here:
@@ -438,7 +439,20 @@ public class View_SimTauxVari extends javax.swing.JInternalFrame implements com.
     }//GEN-LAST:event_iSMtTotalActionPerformed
 
     private void showAmmortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAmmortActionPerformed
-        // TODO add your handling code here:
+      
+        
+// TODO add your handling code here:
+
+                                           
+        double indice = Double.parseDouble(this.jComboBox2.getSelectedItem().toString());  //Benchmark
+        double cape = Double.parseDouble(this.jComboBox1.getSelectedItem().toString());  //Benchmark
+        double tauxInit = Double.parseDouble(this.jTextField4.getText());
+        double montantPret = Double.parseDouble(this
+                .jTextField1.getText());
+        int duree = Integer.parseInt(this.jTextField2.getText());
+        
+        JTablesFrame frame = new JTablesFrame( this.baisseTaux, this.augmentationTaux , this.stabiliteTaux, indice, duree, tauxInit, montantPret, cape);
+        frame.setVisible(true);
     }//GEN-LAST:event_showAmmortActionPerformed
 
 

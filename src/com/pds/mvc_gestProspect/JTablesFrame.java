@@ -67,8 +67,25 @@ public class JTablesFrame extends javax.swing.JFrame {
             info.montantRestant = montantTotal;
             dtmBadRate.addRow(new Object[]{info.annee, MathHepler.ajustVirgule(capet, 2)+" %", info.indice, MathHepler.ajustVirgule(info.taux, 2)+" %", MathHepler.ajustVirgule(info.mensualite/12, 2)+" €", MathHepler.ajustVirgule(info.montantRestant, 2)+" €", MathHepler.ajustVirgule(info.interet, 2)+" €"});
         }
-    }
+    
 
+        // stab Rate
+        montantTotal = stabRate.get(stabRate.size()-1).montantRestant;
+        
+        
+        String colStabRate[] = {"Année", "Taux capé", "Indice", "Taux (%)", "Mensualité", "Montant restant", "Interet"};
+        DefaultTableModel dtmStabRate = (DefaultTableModel) jTable3.getModel();
+        dtmStabRate.setRowCount(0);
+        dtmStabRate.setColumnIdentifiers(colStabRate);
+        
+        
+        for(View_SimTauxVari.infoMensualite info : stabRate){
+            montantTotal -= info.mensualite;
+            info.montantRestant = montantTotal;
+            dtmStabRate.addRow(new Object[]{info.annee, MathHepler.ajustVirgule(capet, 2)+" %", info.indice, MathHepler.ajustVirgule(info.taux, 2)+" %", MathHepler.ajustVirgule(info.mensualite/12, 2)+" €", MathHepler.ajustVirgule(info.montantRestant, 2)+" €", MathHepler.ajustVirgule(info.interet, 2)+" €"});
+        }
+    }
+    
    public JTablesFrame(double indice, int duree, double tauxInit, double montant, double capet) {
         SimulationPret sp=new SimulationPret();
         sp.setMtPret(montant);
@@ -82,39 +99,7 @@ public class JTablesFrame extends javax.swing.JFrame {
         initComponents();
         
         // Rate increase 
-        {
-            String col[] = {"Année", "nombre de mois", "Indice", "Taux", "Mensualité", "Montant restant"};
-            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-            dtm.setRowCount(0);
-            dtm.setColumnIdentifiers(col);
-
-            double tauxTmp = tauxInit;
-            double remaining=montant;
-
-            double montantTotal = 0;
-            List<infoMensualite> listeTable = new LinkedList<>();
-
-            for (int j=0;j<duree;j++){      //Display values in cells 
-
-                //montantTotal +=  sp.calcMensualiteTauxVariable(tauxTmp,remaining);
-                sp.getCalcPret().getTauxDirecteur().setValue(tauxTmp);
-                montantTotal +=  sp.getMensualite();
-                listeTable.add(new infoMensualite(j+1, indice, tauxTmp, sp.getMensualite(), 0));          
-                //dtm.addRow(data);
-
-                if( (tauxTmp + indice) <  tauxInit+capet)
-                    tauxTmp += indice;
-                else
-                    tauxTmp = (tauxInit+capet);
-            }
-
-
-            for(infoMensualite info : listeTable){
-                montantTotal -= info.mensualite;
-                info.montantRestant = montantTotal;
-                dtm.addRow(new Object[]{info.annee, 12, info.indice, MathHepler.ajustVirgule(info.taux, 2)+" %", MathHepler.ajustVirgule(info.mensualite/12, 2)+" €", MathHepler.ajustVirgule(info.montantRestant, 2)+" €"});
-            }
-        }
+    
         
         
         

@@ -301,16 +301,25 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jlRecapBaisse">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Pour un montant de V , avec un taux initial de W , un indice de X , et un taux cap&#xe9; de Y , ce cr&#xe9;dit vous co&#xfb;tera Z ."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlRecapHausse">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Pour un montant de V , avec un taux initial de W , un indice de X , et un taux cap&#xe9; de Y , ce cr&#xe9;dit vous co&#xfb;tera Z ."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlRecapStab">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Pour un montant de V , avec un taux initial de W , un indice de X , et un taux cap&#xe9; de Y , ce cr&#xe9;dit vous co&#xfb;tera Z ."/>
       </Properties>
     </Component>

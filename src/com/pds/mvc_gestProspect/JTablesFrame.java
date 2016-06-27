@@ -277,10 +277,13 @@ public class JTablesFrame extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 51, 102));
         jLabel4.setText("Le tableau d'amortissement");
 
+        jlRecapBaisse.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jlRecapBaisse.setText("Pour un montant de V , avec un taux initial de W , un indice de X , et un taux capé de Y , ce crédit vous coûtera Z .");
 
+        jlRecapHausse.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jlRecapHausse.setText("Pour un montant de V , avec un taux initial de W , un indice de X , et un taux capé de Y , ce crédit vous coûtera Z .");
 
+        jlRecapStab.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jlRecapStab.setText("Pour un montant de V , avec un taux initial de W , un indice de X , et un taux capé de Y , ce crédit vous coûtera Z .");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
